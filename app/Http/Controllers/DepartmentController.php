@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departmetn;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DepartmentController extends Controller
 {
@@ -12,7 +13,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Departments::all();
+        return Inertia::render('Departments/Index', ['departments' => $departments]);
     }
 
     /**
@@ -20,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Departments/Create');
     }
 
     /**
@@ -28,13 +30,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name' => 'required|max:100']);
+        $department = new Department($request->input());
+        $department->save();
+        return redirect('departments');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Departmetn $departmetn)
+    public function show(Department $department)
     {
         //
     }
@@ -42,24 +47,27 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Departmetn $departmetn)
+    public function edit(Department $department)
     {
-        //
+        return Inertia::render('Departments/Edit', ['department' => $department]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Departmetn $departmetn)
+    public function update(Request $request, Department $department)
     {
-        //
+        $request->validate(['name' => 'required|max:100']);
+        $department->update($request->all());
+        return redirect('departments');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Departmetn $departmetn)
+    public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return redirect('departments');
     }
 }

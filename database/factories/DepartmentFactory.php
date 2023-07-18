@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Departmetn>
  */
-class DepartmetnFactory extends Factory
+class DepartmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,6 +18,7 @@ class DepartmetnFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->jobTitle,
         ];
     }
 }
