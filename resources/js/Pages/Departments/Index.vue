@@ -41,7 +41,7 @@ const deleteDepartment = (id, name) => {
                 <div class="mt-3 mb-3 flex">
                     <!-- Contenido -->
                     <Link :href="route('departments.create')" class="px-4 py-2 bg-gray-800 text-white border rounded-md font-semibold text-xs" >
-                        <i class="fa-solid fa-plus-circle"></i>Agregar
+                        <i class="fa-solid fa-plus-circle"></i> Agregar
                     </Link>
                 </div>
                 <div class="bg-white grid v-screen place-items-center">
